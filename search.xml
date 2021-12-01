@@ -21,7 +21,11 @@
   <entry>
     <title>第一篇博客</title>
     <url>/2021/11/29/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<p>#hello<br>welcome to my Blog,have a good time!</p>
+    <content><![CDATA[<p>#攻防世界题解<br>misc：<br><a class="link"   href="https://markdown.com.cn/" >如来十三掌<i class="fas fa-external-link-alt"></i></a>。</p>
+<a href="#">Post not found: Hello-World</a>
 ]]></content>
+      <tags>
+        <tag>11</tag>
+      </tags>
   </entry>
 </search>
