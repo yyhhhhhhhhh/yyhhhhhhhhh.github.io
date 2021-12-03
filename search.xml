@@ -33,16 +33,10 @@
   <entry>
     <title>如来十三掌</title>
     <url>/2021/12/03/%E5%A6%82%E6%9D%A5%E5%8D%81%E4%B8%89%E6%8E%8C/</url>
-    <content><![CDATA[<p>打开网址<br><img src="%25U%5D5B@@%5BIW9_NE07HI%5DH5BQ.png" alt="我超，原！"></p>
+    <content><![CDATA[<p>打开网址,发现有如下文字<br>如来十三掌<br><img src="%25U%5D5B@@%5BIW9_NE07HI%5DH5BQ.png" alt="wochao"><br>，打开<a class="link"   href="https://www.keyfc.net/bbs/tools/tudoucode.aspx" >与佛论禅<i class="fas fa-external-link-alt"></i></a>.然后注意要加上佛曰：或如是我闻：，冒号都是中文的。复制放在下面的文本框里。得到一行代码：MzkuM3gvMUAwnzuvn3cgozMlMTuvqzAenJchMUAeqzWenzEmLJW9<br>然后发现这行代码有大小写字母还有数字，同时长度也是4的倍数。base64直接解密。十三也可能会导致往rot13方向想。<br>base64的特征：base64由大写字母（A-Z），小写字母（a-z），数字（0-9），+/组成。如果字符不足会用=补齐，特征很明显。</p>
 ]]></content>
       <tags>
         <tag>11</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>article_name</title>
-    <url>/2021/12/03/article-name/</url>
-    <content><![CDATA[<p><img src="%25U%5D5B@@%5BIW9_NE07HI%5DH5BQ.png" alt="我超，原！"></p>
-]]></content>
   </entry>
 </search>
