@@ -90,6 +90,9 @@
   <entry>
     <title>掀桌子</title>
     <url>/2021/12/05/%E6%8E%80%E6%A1%8C%E5%AD%90/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<p>首先打开题目，发现只给了一串密文，所以肯定是密码方面的让我们解密的c8e9aca0c6f2e5f3e8c4efe7a1a0d4e8e5a0e6ece1e7a0e9f3baa0e8eafae3f9e4eafae2eae4e3eaebfaebe3f5e7e9f3e4e3e8eaf9eaf3e2e4e6f2</p>
+<p>观察密文特征，有0-9，a-f，不难猜测与十六进制有关。我们又知道两位十六进制可以显示一个字节（）,所以可以通过脚本显示ASCII码<br><img src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-05-151544.55685352mhc0.png" alt="l"><br>但是的出来的却是这个Èé¬ ÆòåóèÄïç¡ Ôèå æìáç éóº èêúãùäêúâêäãêëúëãõçéóäãèêùêóâäæò。。查了一下ASCII码，发现是128以后的。。而ASCII码的范围是0-127，所以对128取余。<br><img src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-05-151851.x5znvrslopc.png"><br>即可得到flag。</p>
+<p>通过这道题，我学到了ASCII码。我们用到的ASCII码一般都是0-127即7位的ASCII码，但是128-255是一些扩展型的ASCII码。学到了学到了。</p>
+]]></content>
   </entry>
 </search>
