@@ -5,9 +5,15 @@
     <url>/2021/11/29/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<p><a class="link"   href="https://xpoet.cn/2020/04/Keep-%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" >Keep主题配置<i class="fas fa-external-link-alt"></i></a><br>#攻防世界题解<br>misc：<br><a class="link"   href="https://markdown.com.cn/" >markdown教程<i class="fas fa-external-link-alt"></i></a>。</p>
 /2021/11/28/hello-world/
+
 <a href="/2021/11/28/hello-world/" title="[hello-world]">[hello-world]</a>
+
 <a href="/2021/12/03/%E5%A6%82%E6%9D%A5%E5%8D%81%E4%B8%89%E6%8E%8C/" title="[如来十三掌]">[如来十三掌]</a>
+
 <a href="#">Post not found: give_you_flag [give_you_flag]</a>
+
+<a href="/2021/12/05/stegano/" title="[stegano]">[stegano]</a>
+
 ]]></content>
       <tags>
         <tag>11</tag>
@@ -51,8 +57,8 @@
   <entry>
     <title>stegano</title>
     <url>/2021/12/05/stegano/</url>
-    <content><![CDATA[<p>stegano<br>打开附件，发现是一个pdf文件<br>![stegano](images/屏幕截图 2021-12-05 094626.png)<br>然后就发现和招新赛那个题很像。ctrl+A全选，复制到word里面，</p>
-<p>![stgano](屏幕截图 2021-12-05 095214.png)</p>
+    <content><![CDATA[<p>stegano<br>打开附件，发现是一个pdf文件<br><img src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/Lyhz.2j833jjppnc0.png" alt="stegano"><br>然后就发现和招新赛那个题很像。ctrl+A全选，复制到word里面，</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-05-095214.24kwr33jn28w.png" alt="stgano"></p>
 <p>然后就发现AB的字符串。首先想到的是培根密码，但是培根密码都是五个一组来替换的。又想到了摩斯密码，有两种情况，将A替换成.B替换成-或者反过来。<br>（替换可以使用word里面的替换功能，我以前笨的一个个换的害）<br>放入<a class="link"   href="http://moersima.00cha.net/" >摩斯密码在线解密网站即可<i class="fas fa-external-link-alt"></i></a><br>flag就不放了。</p>
 <p>反思：密密麻麻的给我一种凯斯密码的错觉。。</p>
 ]]></content>
