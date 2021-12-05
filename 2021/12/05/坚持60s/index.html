@@ -9,7 +9,7 @@
     
     <title>
         
-            Archive: 2021/12 |
+            坚持60s |
         
         LyhhBlog
     </title>
@@ -69,7 +69,7 @@
                         </li>
                     
                         <li class="menu-item">
-                            <a class="active"
+                            <a class=""
                                href="/archives"
                             >
                                 ARCHIVES
@@ -111,7 +111,7 @@
                 </li>
             
                 <li class="drawer-menu-item flex-center">
-                    <a class="active"
+                    <a class=""
                        href="/archives">ARCHIVES</a>
                 </li>
             
@@ -136,66 +136,98 @@
 
                 
                     <div class="fade-in-down-animation">
-    <div class="archive-container ">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">坚持60s</span>
+        </div>
+
         
-<div class="archive-list-container">
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">lyh</span>
+                        
+                            <span class="author-label">Lv1</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-12-05 10:53:37
+    </span>
     
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2021</span>
-                <span class="archive-year-post-count">[6]</span>
-            </div>
-            <ul class="article-list">
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/12/05/%E5%9D%9A%E6%8C%8160s/"
-                        >坚持60s</a>
-                        <span class="article-date">12-05</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/12/05/stegano/"
-                        >stegano</a>
-                        <span class="article-date">12-05</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/12/04/give-you-flag/"
-                        >give_you_flag</a>
-                        <span class="article-date">12-04</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/12/03/%E5%A6%82%E6%9D%A5%E5%8D%81%E4%B8%89%E6%8E%8C/"
-                        >如来十三掌</a>
-                        <span class="article-date">12-03</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/11/29/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"
-                        >攻防世界题解（专题）</a>
-                        <span class="article-date">11-29</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/11/28/hello-world/"
-                        >Hello World</a>
-                        <span class="article-date">11-28</span>
-                    </li>
-                
-            </ul>
-        </section>
+    
+
+    
+    
+    
     
 </div>
 
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>思路：</p>
+<p>打开文件发现是一个小游戏，我们可以通过某些手段通关或者分析游戏文件来获得flag（我还玩了几把这个。）</p>
+<p>知识点：<br>考察对jar文件的反编译能力</p>
+<p>用360压缩打开附件<br><img src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-05-105852.38t49ebf23w0.png" alt="1"><br>用IDEA打开PlaneGameFrame类</p>
+<p>发现如下代码<img src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-05-110145.69brxy2bis40.png" alt="2"><br>显然是base64解密，<a class="link"   target="_blank" rel="noopener" href="https://base64.supfree.net/" >base64加解密<i class="fas fa-external-link-alt"></i></a>即可。</p>
+<p>反思：<br>反编译能力，这个类就是通过switch来判断坚持的时长，所以找到源码即可解密。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：坚持60s</li>
+        <li>Post author：lyh</li>
+        <li>Create time：2021-12-05 10:53:37</li>
+        <li>
+            Post link：https://keep.xpoet.cn/2021/12/05/坚持60s/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/12/05/stegano/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">stegano</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
     </div>
 </div>
+
 
                 
             </div>
@@ -225,6 +257,23 @@
         </div>
     </div>
 
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
     
 
     <div class="right-bottom-side-tools">
@@ -271,6 +320,14 @@
 
     </div>
 
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        
+    </div>
+</div>
+        </aside>
     
 
     <div class="image-viewer-container">
@@ -340,6 +397,14 @@
 
 
 <div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
     
 </div>
 
