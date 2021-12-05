@@ -6,13 +6,22 @@
     <content><![CDATA[<p><a class="link"   href="https://xpoet.cn/2020/04/Keep-%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" >Keep主题配置<i class="fas fa-external-link-alt"></i></a><br>#攻防世界题解<br>misc：<br><a class="link"   href="https://markdown.com.cn/" >markdown教程<i class="fas fa-external-link-alt"></i></a>。</p>
 /2021/11/28/hello-world/
 
+
 <a href="/2021/11/28/hello-world/" title="[hello-world]">[hello-world]</a>
+
 
 <a href="/2021/12/03/%E5%A6%82%E6%9D%A5%E5%8D%81%E4%B8%89%E6%8E%8C/" title="[如来十三掌]">[如来十三掌]</a>
 
+
 <a href="#">Post not found: give_you_flag [give_you_flag]</a>
 
+
 <a href="/2021/12/05/stegano/" title="[stegano]">[stegano]</a>
+
+
+<a href="/2021/12/05/%E5%9D%9A%E6%8C%8160s/" title="[坚持60s]">[坚持60s]</a>
+
+<a href="/2021/12/05/gif/" title="[gif]">[gif]</a>
 
 ]]></content>
       <tags>
@@ -40,7 +49,7 @@
   <entry>
     <title>如来十三掌</title>
     <url>/2021/12/03/%E5%A6%82%E6%9D%A5%E5%8D%81%E4%B8%89%E6%8E%8C/</url>
-    <content><![CDATA[<p>打开网址,发现有如下文字<br>如来十三掌<br><img src="%25U%5D5B@@%5BIW9_NE07HI%5DH5BQ.png" alt="wochao"><br>，打开<a class="link"   href="https://www.keyfc.net/bbs/tools/tudoucode.aspx" >与佛论禅<i class="fas fa-external-link-alt"></i></a>.然后注意要加上佛曰：或如是我闻：，冒号都是中文的。复制放在下面的文本框里。得到一行代码：MzkuM3gvMUAwnzuvn3cgozMlMTuvqzAenJchMUAeqzWenzEmLJW9<br>然后发现这行代码有大小写字母还有数字，同时长度也是4的倍数。base64直接解密。十三也可能会导致往rot13方向想。<br>base64的特征：base64由大写字母（A-Z），小写字母（a-z），数字（0-9），+/组成。如果字符不足会用=补齐，特征很明显。</p>
+    <content><![CDATA[<p>打开网址,发现有如下文字<br>如来十三掌<br><img src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-05-111219.3b85s295jta0.png" alt="wochao"><br>，打开<a class="link"   href="https://www.keyfc.net/bbs/tools/tudoucode.aspx" >与佛论禅<i class="fas fa-external-link-alt"></i></a>.然后注意要加上佛曰：或如是我闻：，冒号都是中文的。复制放在下面的文本框里。得到一行代码：MzkuM3gvMUAwnzuvn3cgozMlMTuvqzAenJchMUAeqzWenzEmLJW9<br>然后发现这行代码有大小写字母还有数字，同时长度也是4的倍数。base64直接解密。十三也可能会导致往rot13方向想。<br>base64的特征：base64由大写字母（A-Z），小写字母（a-z），数字（0-9），+/组成。如果字符不足会用=补齐，特征很明显。</p>
 ]]></content>
       <tags>
         <tag>11</tag>
@@ -72,6 +81,13 @@
 <p>用360压缩打开附件<br><img src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-05-105852.38t49ebf23w0.png" alt="1"><br>用IDEA打开PlaneGameFrame类</p>
 <p>发现如下代码<img src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-05-110145.69brxy2bis40.png" alt="2"><br>显然是base64解密，<a class="link"   href="https://base64.supfree.net/" >base64加解密<i class="fas fa-external-link-alt"></i></a>即可。</p>
 <p>反思：<br>反编译能力，这个类就是通过switch来判断坚持的时长，所以找到源码即可解密。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>gif</title>
+    <url>/2021/12/05/gif/</url>
+    <content><![CDATA[<p>下载压缩包打开，发现有104张图片<br><img src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-05-111557.gye79nlxhlk.png" alt="3"><br>然后用winhex查看一下图片的代码<br><img src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-05-123647.19y0irgy054w.png" alt="l"><br>发现都是jpg形式，然后观察到颜色只有两个，就想到了密码，因为我感觉misc好多与密码相关的。自然而然就想到了密码。只有两种编码，就想到了0和1.而且图片有104张，刚好是8的倍数！</p>
+<p>然后通过python脚本把图片识别出来<br><img src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-05-132439.6e71il6ifow0.png" alt="y"><br>得到字符串01100110011011000110000101100111011110110100011001110101010011100101111101100111011010010100011001111101<br>然后放到二进制转文本（其实还是要八个一组十六进制转文本）<br>注意两串数之间只能有一个空格<br><img src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-05-132838.2vpdl05zzo00.png" alt="h"></p>
 ]]></content>
   </entry>
 </search>
