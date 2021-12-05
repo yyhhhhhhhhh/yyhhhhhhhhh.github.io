@@ -45,7 +45,16 @@
     <url>/2021/12/04/give-you-flag/</url>
     <content><![CDATA[<p>打开文件，发现后缀是gif动图，然后用stegsolve（图片隐写神器）打开<br><a class="link"   href="http://www.caesum.com/handbook/Stegsolve.jar" >stegsolve下载地址<i class="fas fa-external-link-alt"></i></a>这个是需要安装Java，然后配置环境变量才能使用的。具体网上自己搜吧。。</p>
 <p>然后用stegsolve打开，点击Analyse，使用Frame Browser动图分解，发现如下二维码<br><img src="images/7_(H%25U9JT%60DW%60H$XPGN%5DOE1.png" alt="wochao"><br>使用画图软件<br><img src="images/21107801-62284a54709b2ac5.webp" alt="111">补一下就行，我的画图升到win11了，画图不太好用。。。</p>
-<p>然后是一点二维码的知识<br>![222](images/屏幕截图 2021-12-04 225406.png)</p>
+<p>然后是一点二维码的知识<br>![222](images/屏幕截图 2021-12-04 225406.png)<br><a class="link"   href="https://blog.csdn.net/ajianyingxiaoqinghan/article/details/78837864" >二维码的一些知识，想看的可以看看<i class="fas fa-external-link-alt"></i></a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>stegano</title>
+    <url>/2021/12/05/stegano/</url>
+    <content><![CDATA[<p>stegano<br>打开附件，发现是一个pdf文件<br>![stegano](images/屏幕截图 2021-12-05 094626.png)<br>然后就发现和招新赛那个题很像。ctrl+A全选，复制到word里面，</p>
+<p>![stgano](屏幕截图 2021-12-05 095214.png)</p>
+<p>然后就发现AB的字符串。首先想到的是培根密码，但是培根密码都是五个一组来替换的。又想到了摩斯密码，有两种情况，将A替换成.B替换成-或者反过来。<br>（替换可以使用word里面的替换功能，我以前笨的一个个换的害）<br>放入<a class="link"   href="http://moersima.00cha.net/" >摩斯密码在线解密网站即可<i class="fas fa-external-link-alt"></i></a><br>flag就不放了。</p>
+<p>反思：密密麻麻的给我一种凯斯密码的错觉。。</p>
 ]]></content>
   </entry>
 </search>
