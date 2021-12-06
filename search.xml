@@ -125,6 +125,19 @@
                      data-src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-06-193722.6lgyfgj7d8w0.png"
                       alt="lyh"
                 >如果眼睛不好使看不到secret.png的话，就CTRL+f搜索吧（搜索png）。然后flag.txt结束之后就是png的文件了。应该是A8 3C 7A（从别人的wp看到的hh）。这里我们就要修复这个png文件了，涉及到RAR的文件结构，从网上找的，（如果有侵权请联系我，我立马删除！）</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-06-221543.5fbbwk13oko0.png"
+                      alt="lyh"
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-06-221555.386gz8yndww0.png"
+                      alt="lyh"
+                ></p>
+<p>至此我们知道了文件头应该是十六进制的74，改成74即可，修改后重新打开压缩包，就会发现一个空白图片，然后用我们的图片隐写神器stegsolve，打开图片（这种杂项的题）<a class="link"   href="https://www.cnblogs.com/cat47/p/11483478.html" >这是stegsolve的具体使用方法<i class="fas fa-external-link-alt"></i></a>，然后点击右箭头找找就找到了一张二维码的半张图片。然后它又提示了我们ps：双图层，这个没了解过，就去网上找相关的知识（指wp）</p>
+<p>额。ps还没下载。。这个双图层的意思就是你可以使用ps将这个双图层分离，然后使用stegsolve可以找到二维码的上半部分和下半部分，拼在一起就行了。还要补习ps知识。。库里奥（哭辽~）</p>
 ]]></content>
   </entry>
   <entry>
@@ -142,5 +155,16 @@
       <tags>
         <tag>11</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>hexo配置</title>
+    <url>/2021/12/06/hexo%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<p>#记录一下hexo配置出现的错误。。（避坑）<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-06-221206.526420trz6w0.png"
+                      alt="lyh"
+                >额。仅仅因为把feed放在了deploy的下面，就给我报错呜呜呜，咱也不懂这是啥语言，咱也不懂怎么配置的呜呜呜~~~，所以不要乱放啊</p>
+]]></content>
   </entry>
 </search>
