@@ -95,4 +95,15 @@
 <p>通过这道题，我学到了ASCII码。我们用到的ASCII码一般都是0-127即7位的ASCII码，但是128-255是一些扩展型的ASCII码。学到了学到了。</p>
 ]]></content>
   </entry>
+  <entry>
+    <title>misc</title>
+    <url>/2021/12/06/misc/</url>
+    <content><![CDATA[<p>#如来十三掌<br>打开网址,发现有如下文字<br>如来十三掌<br><img src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-05-111219.3b85s295jta0.png" alt="wochao"><br>，打开<a class="link"   href="https://www.keyfc.net/bbs/tools/tudoucode.aspx" >与佛论禅<i class="fas fa-external-link-alt"></i></a>.然后注意要加上佛曰：或如是我闻：，冒号都是中文的。复制放在下面的文本框里。得到一行代码：MzkuM3gvMUAwnzuvn3cgozMlMTuvqzAenJchMUAeqzWenzEmLJW9<br>然后发现这行代码有大小写字母还有数字，同时长度也是4的倍数。base64直接解密。十三也可能会导致往rot13方向想。<br>base64的特征：base64由大写字母（A-Z），小写字母（a-z），数字（0-9），+/组成。如果字符不足会用=补齐，特征很明显。</p>
+<p>#give you flag<br>打开文件，发现后缀是gif动图，然后用stegsolve（图片隐写神器）打开<br><a class="link"   href="http://www.caesum.com/handbook/Stegsolve.jar" >stegsolve下载地址<i class="fas fa-external-link-alt"></i></a>这个是需要安装Java，然后配置环境变量才能使用的。具体网上自己搜吧。。</p>
+<p>然后用stegsolve打开，点击Analyse，使用Frame Browser动图分解，发现如下二维码<br><img src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-05-105143.7fosbjtc2c80.png" alt="wochao"><br>使用画图软件<br><img src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/21107801-62284a54709b2ac5.40wu3gocd7q0.webp" alt="111">补一下就行，我的画图升到win11了，画图不太好用。。。</p>
+<p>然后是一点二维码的知识<br><img src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-04-225406.5xmqsd8xl0k0.png" alt="222"><br><a class="link"   href="https://blog.csdn.net/ajianyingxiaoqinghan/article/details/78837864" >二维码的一些知识，想看的可以看看<i class="fas fa-external-link-alt"></i></a></p>
+<p>#stegano</p>
+<p>#include&lt;stdio.h&gt;</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">int <span class="function"><span class="title">main</span></span>()&#123;</span><br><span class="line">  int i;</span><br><span class="line">  <span class="keyword">for</span>(i=100;i&lt;=200;i++)&#123;</span><br><span class="line">      int j;</span><br><span class="line">        <span class="keyword">for</span>(j=2;j&lt;i;j++)&#123;</span><br><span class="line">          <span class="keyword">if</span>(i%j==0)</span><br><span class="line">	    <span class="built_in">break</span>;</span><br><span class="line">         &#125;</span><br><span class="line">	  <span class="keyword">if</span>(i == j)</span><br><span class="line">	    <span class="built_in">printf</span>(<span class="string">&quot;%d  &quot;</span>,i);</span><br><span class="line">	&#125;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+  </entry>
 </search>
