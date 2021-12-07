@@ -138,6 +138,21 @@
                 ></p>
 <p>至此我们知道了文件头应该是十六进制的74，改成74即可，修改后重新打开压缩包，就会发现一个空白图片，然后用我们的图片隐写神器stegsolve，打开图片（这种杂项的题）<a class="link"   href="https://www.cnblogs.com/cat47/p/11483478.html" >这是stegsolve的具体使用方法<i class="fas fa-external-link-alt"></i></a>，然后点击右箭头找找就找到了一张二维码的半张图片。然后它又提示了我们ps：双图层，这个没了解过，就去网上找相关的知识（指wp）</p>
 <p>额。ps还没下载。。这个双图层的意思就是你可以使用ps将这个双图层分离，然后使用stegsolve可以找到二维码的上半部分和下半部分，拼在一起就行了。还要补习ps知识。。库里奥（哭辽~）</p>
+<p>发现看别人的博客收获还蛮多的，我的建议是如果一道题不会，不要只打开一篇博客看，多看几篇，你会收获新东西的嘿嘿嘿</p>
+<p>将secret.png继续用winHex打开，发现是gif后缀，把后缀改为gif之后放入ps，就会发现两个空白图层了。将两个空白图层提取出来，用stegsolve打开，不断点击箭头到最终出现二维码的图像，拼接到一起就行了。</p>
+<p>这道题考查了非常多的知识点，根本不像一道1★的题。。。<br>网上很多WP说A8 3C 74是rar对png的文件头编码，这种说法是错误的，做学问切忌一知半解！<br>很多专门针对CTF而编写的工具是我们日常生活中用不到的，要多收集整理此类工具并灵活运用<br>（吐槽：360压缩压根不提示你文件头损坏=_=…），好像7z也不提示emmm</p>
+<p>将secret.png导入ps，就会在右下角看到图层1和图层2.然后分别导出png格式。然后用stegsolve就可以找到二维码的上半部分和下半部分。然后截两张图片。截图有个小细节要注意，<b>下半部分的不要留空格，</b>要不会扫不出来（我就是这样。。）<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-07-122330.gmz0l3e4an4.png"
+                      alt="lyh"
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-07-123209.6tdbj9eke9k0.png"
+                      alt="lyh"
+                ><br>用画图补全二维码图片应该都会吧，不再赘述了。手机微信扫一下就出来了。</p>
+<p>#base64stego</p>
 ]]></content>
   </entry>
   <entry>
