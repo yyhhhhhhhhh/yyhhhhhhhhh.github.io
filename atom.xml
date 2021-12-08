@@ -6,7 +6,7 @@
   <link href="https://yyhhhhhhhhh.github.io/atom.xml" rel="self"/>
   
   <link href="https://yyhhhhhhhhh.github.io/"/>
-  <updated>2021-12-06T14:14:40.393Z</updated>
+  <updated>2021-12-08T10:03:49.726Z</updated>
   <id>https://yyhhhhhhhhh.github.io/</id>
   
   <author>
@@ -17,13 +17,76 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>常见文件文件头文件尾格式总结及各类文件头</title>
+    <link href="https://yyhhhhhhhhh.github.io/2021/12/08/%E5%B8%B8%E8%A7%81%E6%96%87%E4%BB%B6%E6%96%87%E4%BB%B6%E5%A4%B4%E6%96%87%E4%BB%B6%E5%B0%BE%E6%A0%BC%E5%BC%8F%E6%80%BB%E7%BB%93%E5%8F%8A%E5%90%84%E7%B1%BB%E6%96%87%E4%BB%B6%E5%A4%B4/"/>
+    <id>https://yyhhhhhhhhh.github.io/2021/12/08/%E5%B8%B8%E8%A7%81%E6%96%87%E4%BB%B6%E6%96%87%E4%BB%B6%E5%A4%B4%E6%96%87%E4%BB%B6%E5%B0%BE%E6%A0%BC%E5%BC%8F%E6%80%BB%E7%BB%93%E5%8F%8A%E5%90%84%E7%B1%BB%E6%96%87%E4%BB%B6%E5%A4%B4/</id>
+    <published>2021-12-08T10:02:45.000Z</published>
+    <updated>2021-12-08T10:03:49.726Z</updated>
+    
+    <content type="html"><![CDATA[<p>JPEG (jpg)，                        　　文件头：FFD8FF　　　　　　　　　　　　　　　　　　　　　　　 文件尾：FF D9　　　　　　　　　　　　　　　<br>PNG (png)，                       　　 文件头：89504E47　　　　　　　　　　　　　　　　　　　　　　文件尾：AE 42 60 82<br>GIF (gif)，                           　　文件头：47494638　　　　　　　　　　　　　　　　　　　　　　文件尾：00 3B                                                                 ZIP Archive (zip)，                     文件头：504B0304　　　　　　　　　　　　　　　　　　　　　　文件尾：50 4B</p><p>TIFF (tif)，                           　  文件头：49492A00　　　　　　　　　　　　　　　　　　　　　　文件尾：<br>Windows Bitmap (bmp)，      　  文件头：424D　　　　　　　　　　　　　　　　　　　　　　　　 文件尾：<br>CAD (dwg)，                        　  文件头：41433130　　　　　　　　　　　　　　　　　　　　　　文件尾：<br>Adobe Photoshop (psd)，          文件头：38425053　　　　　　　　　　　　　　　　　　　　　　文件尾：<br>Rich Text Format (rtf)，             文件头：7B5C727466　　　　　　　　　　　　　　　　　　　　  文件尾：<br>XML (xml)，                              文件头：3C3F786D6C　　　　　　　　　　　　　　　　　　　　 文件尾：<br>HTML (html)，                           文件头：68746D6C3E<br>Email [thorough only] (eml)，     文件头：44656C69766572792D646174653A<br>Outlook Express (dbx)，            文件头：CFAD12FEC5FD746F<br>Outlook (pst)，                         文件头：2142444E<br>MS Word/Excel (xls.or.doc)，      文件头：D0CF11E0<br>MS Access (mdb)，                    文件头：5374616E64617264204A<br>WordPerfect (wpd)，                  文件头：FF575043<br>Adobe Acrobat (pdf)，               文件头：255044462D312E<br>Quicken (qdf)，                         文件头：AC9EBD8F<br>Windows Password (pwl)，         文件头：E3828596</p><p>RAR Archive (rar)，                    文件头：52617221<br>Wave (wav)，                            文件头：57415645<br>AVI (avi)，                                 文件头：41564920<br>Real Audio (ram)，                     文件头：2E7261FD<br>Real Media (rm)，                       文件头：2E524D46<br>MPEG (mpg)，                           文件头：000001BA<br>MPEG (mpg)，                           文件头：000001B3<br>Quicktime (mov)，                     文件头：6D6F6F76<br>Windows Media (asf)，               文件头：3026B2758E66CF11<br>MIDI (mid)，                              文件头：4D546864</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;JPEG (jpg)，                        　　文件头：FFD8FF　　　　　　　　　　　　　　　　　　　　　　　 文件尾：FF D9　　　　　　　　　　　　　　　&lt;br&gt;PNG (png)，                       　　 文件</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>buumisc</title>
+    <link href="https://yyhhhhhhhhh.github.io/2021/12/08/buumisc/"/>
+    <id>https://yyhhhhhhhhh.github.io/2021/12/08/buumisc/</id>
+    <published>2021-12-08T09:39:30.000Z</published>
+    <updated>2021-12-08T10:03:50.783Z</updated>
+    
+    <content type="html"><![CDATA[<p>#签到<br>签到就不多说了。</p><p>#二维码<br>工具：winhex，QR search（一款功能强大的<b>二维码识别软件</b>，主要集区域解码，全屏解码，摄像头拍照解码以及二维码美化等功能为一体），虚拟机</p><p>打开二维码图片，用手机扫了扫，不会真有人以为secret is here是flag吧？（手动狗头）hh。然后用winhex查看图片.看别人的博客有先用QR search扫描一下二维码的，那个工具貌似可以对二维码进行解密（我还没用过那个工具。）</p><p><img                       lazyload                     src="/images/loading.svg"                     data-src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-08-175631.1lgxwkcfaluo.png"                      alt="lyh"                >然后就在里面看到了隐藏文件，然后下面总结了几种解题方法，有一些是从别人的wp看的，感觉也很不错。</p><p>binwalk分离。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;#签到&lt;br&gt;签到就不多说了。&lt;/p&gt;
+&lt;p&gt;#二维码&lt;br&gt;工具：winhex，QR search（一款功能强大的&lt;b&gt;二维码识别软件&lt;/b&gt;，主要集区域解码，全屏解码，摄像头拍照解码以及二维码美化等功能为一体），虚拟机&lt;/p&gt;
+&lt;p&gt;打开二维码图片，用手机扫了扫，不会真</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>BUUCTF</title>
+    <link href="https://yyhhhhhhhhh.github.io/2021/12/08/BUUCTF/"/>
+    <id>https://yyhhhhhhhhh.github.io/2021/12/08/BUUCTF/</id>
+    <published>2021-12-08T09:38:08.000Z</published>
+    <updated>2021-12-08T09:39:56.798Z</updated>
+    
+    <content type="html"><![CDATA[<p>#BUUCTF题解<br>misc:<a href="/2021/12/08/buumisc/" title="[buumisc]">[buumisc]</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;#BUUCTF题解&lt;br&gt;misc:&lt;a href=&quot;/2021/12/08/buumisc/&quot; title=&quot;[buumisc]&quot;&gt;[buumisc]&lt;/a&gt;&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>hexo配置</title>
     <link href="https://yyhhhhhhhhh.github.io/2021/12/06/hexo%E9%85%8D%E7%BD%AE/"/>
     <id>https://yyhhhhhhhhh.github.io/2021/12/06/hexo%E9%85%8D%E7%BD%AE/</id>
     <published>2021-12-06T14:10:51.000Z</published>
-    <updated>2021-12-06T14:14:40.393Z</updated>
+    <updated>2021-12-07T05:02:52.128Z</updated>
     
-    <content type="html"><![CDATA[<p>#记录一下hexo配置出现的错误。。（避坑）<br><img                       lazyload                     src="/images/loading.svg"                     data-src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-06-221206.526420trz6w0.png"                      alt="lyh"                >额。仅仅因为把feed放在了deploy的下面，就给我报错呜呜呜，咱也不懂这是啥语言，咱也不懂怎么配置的呜呜呜~~~，所以不要乱放啊</p>]]></content>
+    <content type="html"><![CDATA[<p>#记录一下hexo配置出现的错误。。（避坑）<br><img                       lazyload                     src="/images/loading.svg"                     data-src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-06-221206.526420trz6w0.png"                      alt="lyh"                >额。仅仅因为把feed放在了deploy的下面，就给我报错呜呜呜，咱也不懂这是啥语言，咱也不懂怎么配置的呜呜呜~~~，所以不要乱放啊<br>而且有时候命令行报错的时候Bash不报错，bash报错的时候命令行不报错。</p>]]></content>
     
     
       
@@ -67,9 +130,9 @@
     <link href="https://yyhhhhhhhhh.github.io/2021/11/29/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"/>
     <id>https://yyhhhhhhhhh.github.io/2021/11/29/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</id>
     <published>2021-11-29T15:07:44.000Z</published>
-    <updated>2021-12-06T03:56:14.383Z</updated>
+    <updated>2021-12-07T14:05:14.254Z</updated>
     
-    <content type="html"><![CDATA[<p><a class="link"   href="https://xpoet.cn/2020/04/Keep-%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" >Keep主题配置<i class="fas fa-external-link-alt"></i></a><br><a class="link"   href="https://markdown.com.cn/" >markdown教程<i class="fas fa-external-link-alt"></i></a>。<br>#攻防世界题解<br>misc：<a href="/2021/12/06/misc/" title="[misc]">[misc]</a></p>/2021/11/28/hello-world/<a href="/2021/11/28/hello-world/" title="[hello-world]">[hello-world]</a><a href="/2021/12/06/misc/" title="[misc]">[misc]</a>]]></content>
+    <content type="html"><![CDATA[<p><a class="link"   href="https://xpoet.cn/2020/04/Keep-%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" >Keep主题配置<i class="fas fa-external-link-alt"></i></a><br><a class="link"   href="https://markdown.com.cn/" >markdown教程<i class="fas fa-external-link-alt"></i></a>。<br>#攻防世界题解<br>misc：<a href="/2021/12/06/misc/" title="[misc]">[misc]</a></p>/2021/11/28/hello-world/<a href="/2021/11/28/hello-world/" title="[hello-world]">[hello-world]</a>]]></content>
     
     
       
