@@ -171,12 +171,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>1.9k Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>3.3k Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>6 Mins</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>12 Mins</span>
         </span>
     
     
@@ -324,6 +324,64 @@
                       alt="lyh"
                 ><br>用画图补全二维码图片应该都会吧，不再赘述了。手机微信扫一下就出来了。</p>
 <p>#base64stego</p>
+<p>打开stegoo.txt，将内容全部复制下来，强行解密，发现解不了。与是用python文本来解</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import base64</span><br><span class="line"></span><br><span class="line">data = []</span><br><span class="line">a = open(<span class="string">&quot;stego.txt&quot;</span>, <span class="string">&quot;rt&quot;</span>)</span><br><span class="line">b = a.readlines()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> b:</span><br><span class="line">    c = base64.b64decode(i.encode(<span class="string">&quot;utf-8&quot;</span>))</span><br><span class="line">    data.append(c)</span><br><span class="line">a.close()</span><br><span class="line"><span class="built_in">print</span>(data)</span><br><span class="line"></span><br><span class="line">m=open(<span class="string">&quot;flag.txt&quot;</span>, <span class="string">&quot;wb&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> data:</span><br><span class="line">    m.write(i)</span><br><span class="line">m.close()</span><br></pre></td></tr></table></figure>
+<p>将生成的flag.txt打开，得到一堆字符串<br>补充：我用的360压缩，能直接打开。但是看网上的wp发现有的还要密码。emmm（360压缩是真强大啊）。所以我就把压缩包也解一下密，供需要的小伙伴看~</p>
+<p>zip伪加密<br>一个zip文件由三部分组成：压缩源文件数据区，压缩源文件目录区，压缩源文件目录结束标志。</p>
+<p>伪加密原理：zip伪加密是在文件头中加密标志位做修改，然后在打开时误被识别为加密压缩包。</p>
+<p>压缩源文件数据区：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-09-145053.rgles831kuo.png"
+                      alt="lyh"
+                ></p>
+<p>50 4B 03 04：头文件标记<br>14 03：解压文件所需 pkware 版本<br>00 00：全局方式位标记（判断有无加密的重要标志）<br>08 00：压缩方式<br>68 BF：最后修改文件的时间<br>9B 48：最后修改文件的日期<br>FE 32 7D 4B：CRC-32校验<br>E9 0D 00 00：压缩后尺寸<br>B5 1B 00 00：未压缩尺寸<br>09 00：文件名长度<br>00 00：扩展记录长度</p>
+<p>压缩源文件目录区：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-09-150613.33bll1pbhm00.png"
+                      alt="lyh"
+                ></p>
+<p>50 4B 01 02：目录中文件文件头标记<br>3F 03：压缩使用的 pkware 版本<br>14 03：解压文件所需 pkware 版本<br>09 00：全局方式位标记（有无加密的重要标志，这个更改这里进行伪加密，改为00 00打开不会提示要密码了）<br>08 00：压缩方式<br>68 BF：最后修改文件的时间<br>9B 48：最后修改文件的日期<br>FE 32 7D 4B：CRC-32校验<br>E9 0D 00 00：压缩后尺寸<br>B5 1B 00 00：未压缩尺寸<br>09 00：文件名长度<br>24 00：扩展字段长度<br>00 00：文件注释长度<br>00 00：磁盘开始号<br>00 00：内部文件属性<br>20 80 ED 81：外部文件属性<br>00 00 00 00：局部头部偏移量</p>
+<p>压缩源文件目录结束标志：</p>
+<p>50 4B 05 06：目录结束标记<br>00 00：当前磁盘编号<br>00 00：目录区开始磁盘编号<br>01 00：本磁盘上纪录总数<br>01 00：目录区中纪录总数<br>5B 00 00 00：目录区尺寸大小<br>10 0E 00 00：目录区对第一张磁盘的偏移量<br>00 00：ZIP 文件注释长度</p>
+<p>判断是否加密：</p>
+<p>无加密：<br>压缩源文件数据区的全局加密应当为00 00<br>压缩源文件目录区的全局方式位标志应当为00 00</p>
+<p>伪加密<br>压缩源文件数据区的全局加密应当为00 00<br>压缩源文件目录区的全局方式位标志应当为09 00</p>
+<p>真加密<br>压缩源文件数据区的全局加密应当为09 00<br>压缩源文件目录区的全局方式位标记应当为09 00</p>
+<p>使用winhex打开压缩包，根据观察这个文件使用了伪加密，所以将压缩源文件目录区的全局方式位改为00 00保存即可解压<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-09-150416.v4mux6f4tls.png"
+                      alt="lyh"
+                ></p>
+<p>学问莫要做到一知半解。应该刨根问底！</p>
+<p>base64解码原理</p>
+<p>base64编码用64个ascii字符作为基础来编码二进制内容。编码后的数据是一个字符串，包含的字符位：A-Za-z0-9+/共64个字符，其中=是填充字符。</p>
+<p>编码规则：把3个8位字节转化为4个6位字节，再根据每个字节的值，用base64编码表中的值替换，不足4个字节的，补“=”，编码得到的字符串长度必为4的倍数。</p>
+<p>编码步骤：<br>1.将待编码字符串各个字符转换为ASCII值<br>2.将得到的ASCII值转换为8位二进制<br>3.将得到的8位二进制字符串分割位6位一组（不足6位的末尾添0补上）<br>4.将每个6位二进制数列转换为十进制。（6位二进制最大值位63：111 111）<br>5.将转换得到的十进制值按照对应的base64编码表中的字符进行替换一下<br>6. 若编码后所得字符串长不是4的倍数。添加一个或者两个“=”补上i即可。  </p>
+<p>当编码的文本字节数是3的倍数时，刚好可以编码位4个字符<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-09-152856.29ngmtomx11c.png"
+                     
+                ></p>
+<p>编码的文本字节数不是3的倍数时，剩下1个字符时<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-09-152922.356nj0ijc340.png"
+                     
+                ></p>
+<p>编码的文本字节数不是3的倍数时，剩下2个字符时<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-09-152909.m1ft1x95uz4.png"
+                     
+                ></p>
+<p>解码步骤：<br>1.将待解码字符串中的字符对应查找base64编码表中的序列值（末尾的“=”直接忽略）<br>2.将所得对应序列值转换为6位二进制字符串<br>3.将所有6位二进制字符串从左往右按8位分割（多的是补的0所以直接丢掉并不会影响数据还原结果）<br>4.将每个8位二进制字符串转换位十进制<br>5.再将十进制转换位对应的ASCII字符串即可。   </p>
+<p>base64隐写原理<br>它之所以能够进行信息的隐藏，原因就在于解码时的第三步，会有部分多余数据被丢弃，而且这些数据是我们进行补充的0，那要是我们不全用0进行补充，而是用1或者0进行填充（二进制），这样就可以隐藏信息了。<br>提取信息的话，将我们填充进去的数据拿出来然后组成一串二进制字符串进行转码即可。由于一串base64编码最多只有4bit的隐写空间，所以实现隐写需要大量的编码串。</p>
+<p>下面是脚本</p>
 
         </div>
 

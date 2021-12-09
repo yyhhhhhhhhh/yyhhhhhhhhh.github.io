@@ -153,14 +153,71 @@
                       alt="lyh"
                 ><br>用画图补全二维码图片应该都会吧，不再赘述了。手机微信扫一下就出来了。</p>
 <p>#base64stego</p>
+<p>打开stegoo.txt，将内容全部复制下来，强行解密，发现解不了。与是用python文本来解</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">import base64</span><br><span class="line"></span><br><span class="line">data = []</span><br><span class="line">a = open(<span class="string">&quot;stego.txt&quot;</span>, <span class="string">&quot;rt&quot;</span>)</span><br><span class="line">b = a.readlines()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> b:</span><br><span class="line">    c = base64.b64decode(i.encode(<span class="string">&quot;utf-8&quot;</span>))</span><br><span class="line">    data.append(c)</span><br><span class="line">a.close()</span><br><span class="line"><span class="built_in">print</span>(data)</span><br><span class="line"></span><br><span class="line">m=open(<span class="string">&quot;flag.txt&quot;</span>, <span class="string">&quot;wb&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> data:</span><br><span class="line">    m.write(i)</span><br><span class="line">m.close()</span><br></pre></td></tr></table></figure>
+<p>将生成的flag.txt打开，得到一堆字符串<br>补充：我用的360压缩，能直接打开。但是看网上的wp发现有的还要密码。emmm（360压缩是真强大啊）。所以我就把压缩包也解一下密，供需要的小伙伴看~</p>
+<p>zip伪加密<br>一个zip文件由三部分组成：压缩源文件数据区，压缩源文件目录区，压缩源文件目录结束标志。</p>
+<p>伪加密原理：zip伪加密是在文件头中加密标志位做修改，然后在打开时误被识别为加密压缩包。</p>
+<p>压缩源文件数据区：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-09-145053.rgles831kuo.png"
+                      alt="lyh"
+                ></p>
+<p>50 4B 03 04：头文件标记<br>14 03：解压文件所需 pkware 版本<br>00 00：全局方式位标记（判断有无加密的重要标志）<br>08 00：压缩方式<br>68 BF：最后修改文件的时间<br>9B 48：最后修改文件的日期<br>FE 32 7D 4B：CRC-32校验<br>E9 0D 00 00：压缩后尺寸<br>B5 1B 00 00：未压缩尺寸<br>09 00：文件名长度<br>00 00：扩展记录长度</p>
+<p>压缩源文件目录区：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-09-150613.33bll1pbhm00.png"
+                      alt="lyh"
+                ></p>
+<p>50 4B 01 02：目录中文件文件头标记<br>3F 03：压缩使用的 pkware 版本<br>14 03：解压文件所需 pkware 版本<br>09 00：全局方式位标记（有无加密的重要标志，这个更改这里进行伪加密，改为00 00打开不会提示要密码了）<br>08 00：压缩方式<br>68 BF：最后修改文件的时间<br>9B 48：最后修改文件的日期<br>FE 32 7D 4B：CRC-32校验<br>E9 0D 00 00：压缩后尺寸<br>B5 1B 00 00：未压缩尺寸<br>09 00：文件名长度<br>24 00：扩展字段长度<br>00 00：文件注释长度<br>00 00：磁盘开始号<br>00 00：内部文件属性<br>20 80 ED 81：外部文件属性<br>00 00 00 00：局部头部偏移量</p>
+<p>压缩源文件目录结束标志：</p>
+<p>50 4B 05 06：目录结束标记<br>00 00：当前磁盘编号<br>00 00：目录区开始磁盘编号<br>01 00：本磁盘上纪录总数<br>01 00：目录区中纪录总数<br>5B 00 00 00：目录区尺寸大小<br>10 0E 00 00：目录区对第一张磁盘的偏移量<br>00 00：ZIP 文件注释长度</p>
+<p>判断是否加密：</p>
+<p>无加密：<br>压缩源文件数据区的全局加密应当为00 00<br>压缩源文件目录区的全局方式位标志应当为00 00</p>
+<p>伪加密<br>压缩源文件数据区的全局加密应当为00 00<br>压缩源文件目录区的全局方式位标志应当为09 00</p>
+<p>真加密<br>压缩源文件数据区的全局加密应当为09 00<br>压缩源文件目录区的全局方式位标记应当为09 00</p>
+<p>使用winhex打开压缩包，根据观察这个文件使用了伪加密，所以将压缩源文件目录区的全局方式位改为00 00保存即可解压<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-09-150416.v4mux6f4tls.png"
+                      alt="lyh"
+                ></p>
+<p>学问莫要做到一知半解。应该刨根问底！</p>
+<p>base64解码原理</p>
+<p>base64编码用64个ascii字符作为基础来编码二进制内容。编码后的数据是一个字符串，包含的字符位：A-Za-z0-9+/共64个字符，其中=是填充字符。</p>
+<p>编码规则：把3个8位字节转化为4个6位字节，再根据每个字节的值，用base64编码表中的值替换，不足4个字节的，补“=”，编码得到的字符串长度必为4的倍数。</p>
+<p>编码步骤：<br>1.将待编码字符串各个字符转换为ASCII值<br>2.将得到的ASCII值转换为8位二进制<br>3.将得到的8位二进制字符串分割位6位一组（不足6位的末尾添0补上）<br>4.将每个6位二进制数列转换为十进制。（6位二进制最大值位63：111 111）<br>5.将转换得到的十进制值按照对应的base64编码表中的字符进行替换一下<br>6. 若编码后所得字符串长不是4的倍数。添加一个或者两个“=”补上i即可。  </p>
+<p>当编码的文本字节数是3的倍数时，刚好可以编码位4个字符<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-09-152856.29ngmtomx11c.png"
+                     
+                ></p>
+<p>编码的文本字节数不是3的倍数时，剩下1个字符时<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-09-152922.356nj0ijc340.png"
+                     
+                ></p>
+<p>编码的文本字节数不是3的倍数时，剩下2个字符时<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-09-152909.m1ft1x95uz4.png"
+                     
+                ></p>
+<p>解码步骤：<br>1.将待解码字符串中的字符对应查找base64编码表中的序列值（末尾的“=”直接忽略）<br>2.将所得对应序列值转换为6位二进制字符串<br>3.将所有6位二进制字符串从左往右按8位分割（多的是补的0所以直接丢掉并不会影响数据还原结果）<br>4.将每个8位二进制字符串转换位十进制<br>5.再将十进制转换位对应的ASCII字符串即可。   </p>
+<p>base64隐写原理<br>它之所以能够进行信息的隐藏，原因就在于解码时的第三步，会有部分多余数据被丢弃，而且这些数据是我们进行补充的0，那要是我们不全用0进行补充，而是用1或者0进行填充（二进制），这样就可以隐藏信息了。<br>提取信息的话，将我们填充进去的数据拿出来然后组成一串二进制字符串进行转码即可。由于一串base64编码最多只有4bit的隐写空间，所以实现隐写需要大量的编码串。</p>
+<p>下面是脚本</p>
 ]]></content>
   </entry>
   <entry>
     <title>攻防世界题解（专题）</title>
     <url>/2021/11/29/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<p><a class="link"   href="https://xpoet.cn/2020/04/Keep-%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" >Keep主题配置<i class="fas fa-external-link-alt"></i></a><br><a class="link"   href="https://markdown.com.cn/" >markdown教程<i class="fas fa-external-link-alt"></i></a>。<br>#攻防世界题解<br>misc：<a href="/2021/12/06/misc/" title="[misc]">[misc]</a></p>
-/2021/11/28/hello-world/
-
+    <content><![CDATA[<p><a class="link"   href="https://xpoet.cn/2020/04/Keep-%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" >Keep主题配置<i class="fas fa-external-link-alt"></i></a><br><a class="link"   href="https://markdown.com.cn/" >markdown教程<i class="fas fa-external-link-alt"></i></a>。<br>#攻防世界题解<br>misc：<a href="/2021/12/06/misc/" title="[misc]">[misc]</a>       </p>
+/2021/11/28/hello-world/       
 <a href="/2021/11/28/hello-world/" title="[hello-world]">[hello-world]</a>
 
 
@@ -191,7 +248,7 @@
     <url>/2021/12/08/buumisc/</url>
     <content><![CDATA[<p>#签到<br>签到就不多说了。</p>
 <p>#二维码<br>工具：winhex，QR search（一款功能强大的<b>二维码识别软件</b>，主要集区域解码，全屏解码，摄像头拍照解码以及二维码美化等功能为一体），虚拟机</p>
-<p>打开二维码图片，用手机扫了扫，不会真有人以为secret is here是flag吧？（手动狗头）hh。然后用winhex查看图片.看别人的博客有先用QR search扫描一下二维码的，那个工具貌似可以对二维码进行解密（我还没用过那个工具。）</p>
+<p>打开二维码图片，用手机扫了扫，不会真有人以为secret is here是flag吧？（手动狗头）hh。然后用winhex查看图片.看别人的博客有先用QR search扫描一下二维码的，就是可以查看二维码的信息）</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
@@ -207,6 +264,197 @@
     <content><![CDATA[<p>JPEG (jpg)，                        　　文件头：FFD8FF　　　　　　　　　　　　　　　　　　　　　　　 文件尾：FF D9　　　　　　　　　　　　　　　<br>PNG (png)，                       　　 文件头：89504E47　　　　　　　　　　　　　　　　　　　　　　文件尾：AE 42 60 82<br>GIF (gif)，                           　　文件头：47494638　　　　　　　　　　　　　　　　　　　　　　文件尾：00 3B                                                                 ZIP Archive (zip)，                     文件头：504B0304　　　　　　　　　　　　　　　　　　　　　　文件尾：50 4B</p>
 <p>TIFF (tif)，                           　  文件头：49492A00　　　　　　　　　　　　　　　　　　　　　　文件尾：<br>Windows Bitmap (bmp)，      　  文件头：424D　　　　　　　　　　　　　　　　　　　　　　　　 文件尾：<br>CAD (dwg)，                        　  文件头：41433130　　　　　　　　　　　　　　　　　　　　　　文件尾：<br>Adobe Photoshop (psd)，          文件头：38425053　　　　　　　　　　　　　　　　　　　　　　文件尾：<br>Rich Text Format (rtf)，             文件头：7B5C727466　　　　　　　　　　　　　　　　　　　　  文件尾：<br>XML (xml)，                              文件头：3C3F786D6C　　　　　　　　　　　　　　　　　　　　 文件尾：<br>HTML (html)，                           文件头：68746D6C3E<br>Email [thorough only] (eml)，     文件头：44656C69766572792D646174653A<br>Outlook Express (dbx)，            文件头：CFAD12FEC5FD746F<br>Outlook (pst)，                         文件头：2142444E<br>MS Word/Excel (xls.or.doc)，      文件头：D0CF11E0<br>MS Access (mdb)，                    文件头：5374616E64617264204A<br>WordPerfect (wpd)，                  文件头：FF575043<br>Adobe Acrobat (pdf)，               文件头：255044462D312E<br>Quicken (qdf)，                         文件头：AC9EBD8F<br>Windows Password (pwl)，         文件头：E3828596</p>
 <p>RAR Archive (rar)，                    文件头：52617221<br>Wave (wav)，                            文件头：57415645<br>AVI (avi)，                                 文件头：41564920<br>Real Audio (ram)，                     文件头：2E7261FD<br>Real Media (rm)，                       文件头：2E524D46<br>MPEG (mpg)，                           文件头：000001BA<br>MPEG (mpg)，                           文件头：000001B3<br>Quicktime (mov)，                     文件头：6D6F6F76<br>Windows Media (asf)，               文件头：3026B2758E66CF11<br>MIDI (mid)，                              文件头：4D546864</p>
+<p>各类文件的文件头标志</p>
+<p>1、从Ultra－edit-32中提取出来的</p>
+<p>附件:文件格式分析器</p>
+<p>JPEG (jpg)，文件头：FFD8FF</p>
+<p>PNG (png)，文件头：89504E47</p>
+<p>GIF (gif)，文件头：47494638</p>
+<p>TIFF (tif)，文件头：49492A00</p>
+<p>Windows Bitmap (bmp)，文件头：424D</p>
+<p>CAD (dwg)，文件头：41433130</p>
+<p>Adobe Photoshop (psd)，文件头：38425053</p>
+<p>Rich Text Format (rtf)，文件头：7B5C727466</p>
+<p>XML (xml)，文件头：3C3F786D6C</p>
+<p>HTML (html)，文件头：68746D6C3E</p>
+<p>Email [thorough only] (eml)，文件头：44656C69766572792D646174653A</p>
+<p>Outlook Express (dbx)，文件头：CFAD12FEC5FD746F</p>
+<p>Outlook (pst)，文件头：2142444E</p>
+<p>MS Word/Excel (xls.or.doc)，文件头：D0CF11E0</p>
+<p>MS Access (mdb)，文件头：5374616E64617264204A</p>
+<p>WordPerfect (wpd)，文件头：FF575043</p>
+<p>Postscript (eps.or.ps)，文件头：252150532D41646F6265</p>
+<p>Adobe Acrobat (pdf)，文件头：255044462D312E</p>
+<p>Quicken (qdf)，文件头：AC9EBD8F</p>
+<p>Windows Password (pwl)，文件头：E3828596</p>
+<p>ZIP Archive (zip)，文件头：504B0304</p>
+<p>RAR Archive (rar)，文件头：52617221</p>
+<p>Wave (wav)，文件头：57415645</p>
+<p>AVI (avi)，文件头：41564920</p>
+<p>Real Audio (ram)，文件头：2E7261FD</p>
+<p>Real Media (rm)，文件头：2E524D46</p>
+<p>MPEG (mpg)，文件头：000001BA</p>
+<p>MPEG (mpg)，文件头：000001B3</p>
+<p>Quicktime (mov)，文件头：6D6F6F76</p>
+<p>Windows Media (asf)，文件头：3026B2758E66CF11</p>
+<p>MIDI (mid)，文件头：4D546864</p>
+<p>2、从winhex中取出的文件头列表</p>
+<p>File Type ExtensionsHeader</p>
+<p>JPEG jpg;jpeg 0xFFD8FF</p>
+<p>PNG png 0x89504E470D0A1A0A</p>
+<p>GIF gif GIF8</p>
+<p>TIFF tif;tiff 0x49492A00</p>
+<p>TIFF tif;tiff 0x4D4D002A</p>
+<p>Bit map bmp BM</p>
+<p>AOL ART art 0x4A47040E000000</p>
+<p>AOL ART art 0x4A47030E000000</p>
+<p>PC Paintbrush pcx 0x0A050108</p>
+<p>Graphics Metafile wmf 0xD7CDC69A</p>
+<p>Graphics Metafile wmf 0x01000900</p>
+<p>Graphics Metafile wmf 0x02000900</p>
+<p>Enhanced Metafile emf 0x0100000058000000</p>
+<p>Corel Draw cdr CDR</p>
+<p>CAD dwg 0x41433130</p>
+<p>Adobe Photoshop psd 8BPS</p>
+<p>Rich Text Format rtf rtf</p>
+<p>XML xml</p>
+<p>HTML html;htm;PHP;php3;php4;phtml;shtml type</p>
+<p>Email eml Delivery-date:</p>
+<p>Outlook Express dbx 0xCFAD12FE</p>
+<p>Outlookpst!BDN</p>
+<p>MS Office/OLE2doc;xls;dot;ppt;xla;ppa;pps;pot;msi;sdw;db 0xD0CF11E0A1B11AE1</p>
+<p>MS Access mdb;mda;mde;mdt Standard J</p>
+<p>WordPerfect wpd 0xFF575043</p>
+<p>OpenOffice Writer sxw writer</p>
+<p>OpenOffice Calc sxc calc</p>
+<p>OpenOffice Math sxm math</p>
+<p>OpenOffice Impress sxi impress</p>
+<p>OpenOffice Draw sxd draw</p>
+<p>Adobe FrameMaker fm &lt;MAKERFILE</p>
+<p>PostScript eps.or.ps;ps;eps %!PS-Adobe</p>
+<p>Adobe Acrobat pdf %PDF-1.</p>
+<p>Quicken qdf 0xAC9EBD8F</p>
+<p>QuickBooks Backup qbb 0x458600000600</p>
+<p>Sage sly.or.srt.or.slt;sly;srt;slt0x53520100</p>
+<p>Sage Backup 1 SAGEBACKUP</p>
+<p>Lotus WordPro v9 lwp 0x576F726450726F</p>
+<p>Lotus 123 v9 123 0x00001A00051004</p>
+<p>Lotus 123 v5 wk4 0x00001A0002100400</p>
+<p>Lotus 123 v3 wk3 0x00001A0000100400</p>
+<p>Lotus 123 v1 wk1 0x2000604060</p>
+<p>Windows Password pwl 0xE3828596</p>
+<p>ZIP Archive zip;jar 0x504B0304</p>
+<p>ZIP Archive (outdated) zip 0x504B3030</p>
+<p>RAR Archive rar Rar!</p>
+<p>GZ Archive gz;tgz 0x1F8B08</p>
+<p>BZIP Archive bz2 BZh</p>
+<p>ARJ Archive arj 0x60EA</p>
+<p>7-ZIP Archive 7z 7z集’</p>
+<p>Wave wav WAVE</p>
+<p>AVI avi AVI</p>
+<p>Real Audio ram;ra .ra?0</p>
+<p>Real Media rm .RMF</p>
+<p>MPEG mpg;mpeg 0x000001BA</p>
+<p>MPEG mpg;mpeg 0x000001B3</p>
+<p>Quicktime mov moov</p>
+<p>Windows Media asf 0x3026B2758E66CF11</p>
+<p>MIDI mid MThd</p>
+<p>Win32 Executable exe;dll;drv;vxd;sys;ocx;vbxMZ</p>
+<p>Win16 Executable exe;dll;drv;vxd;sys;ocx;vbxMZ</p>
+<p>ELF Executable elf;; 0x7F454C4601010100</p>
+<p>各种文件类型文件头标志位详细列表</p>
+<p>FFD8FFFE00, .JPEG;.JPE;.JPG, “JPGGraphic File”</p>
+<p>FFD8FFE000, .JPEG;.JPE;.JPG, “JPGGraphic File”</p>
+<p>474946383961, .gif, “GIF 89A”</p>
+<p>474946383761, .gif, “GIF 87A”</p>
+<p>424D, .bmp, “Windows Bitmap”</p>
+<p>4D5A,.exe;.com;.386;.ax;.acm;.sys;.dll;.drv;.flt;.fon;.ocx;.scr;.lrc;.vxd;</p>
+<p>.cpl;.x32, “Executable File”</p>
+<p>504B0304, .zip, “Zip Compressed”</p>
+<p>3A42617365, .cnt, “”</p>
+<p>D0CF11E0A1B11AE1,.doc;.xls;.xlt;.ppt;.apr, “MS Compound Document v1 or Lotus Approach APRfile”</p>
+<p>0100000058000000, .emf, “”</p>
+<p>03000000C466C456, .evt, “”</p>
+<p>3F5F0300, .gid;.hlp;.lhp, “Windows HelpFile”</p>
+<p>1F8B08, .gz, “GZ Compressed File”</p>
+<p>28546869732066696C65, .hqx, “”</p>
+<p>0000010000, .ico, “Icon File”</p>
+<p>4C000000011402, .lnk, “Windows LinkFile”</p>
+<p>25504446, .pdf, “Adobe PDF File”</p>
+<p>5245474544495434, .reg, “”</p>
+<p>7B5C727466,.rtf, “Rich Text Format File”</p>
+<p>lh, .lzh, “Lz compression file”</p>
+<p>MThd, .mid, “”</p>
+<p>0A050108, .pcx, “”</p>
+<p>25215053, .eps, “Adobe EPS File”</p>
+<p>2112, .ain, “AIN Archive File”</p>
+<p>1A02, .arc, “ARC/PKPAK Compressed 1”</p>
+<p>1A03, .arc, “ARC/PKPAK Compressed 2”</p>
+<p>1A04, .arc, “ARC/PKPAK Compressed 3”</p>
+<p>1A08, .arc, “ARC/PKPAK Compressed 4”</p>
+<p>1A09, .arc, “ARC/PKPAK Compressed 5”</p>
+<p>60EA, .arj, “ARJ Compressed”</p>
+<p>41564920, .avi, “Audio Video Interleave(AVI)”</p>
+<p>425A68, .bz;.bz2, “Bzip Archive”</p>
+<p>49536328, .cab, “Cabinet File”</p>
+<p>4C01, .obj, “Compiled Object Module”</p>
+<p>303730373037, .tar;.cpio, “CPIO ArchiveFile”</p>
+<p>4352555348, .cru;.crush, “CRUSH ArchiveFile”</p>
+<p>3ADE68B1, .dcx, “DCX Graphic File”</p>
+<p>1F8B, .gz;.tar;.tgz, “Gzip ArchiveFile”</p>
+<p>91334846, .hap, “HAP Archive File”</p>
+<p>3C68746D6C3E,.htm;.html, “HyperText Markup Language 1”</p>
+<p>3C48544D4C3E,.htm;.html, “HyperText Markup Language 2”</p>
+<p>3C21444F4354, .htm;.html, “HyperText MarkupLanguage 3”</p>
+<p>100, .ico, “ICON File”</p>
+<p>5F27A889, .jar, “JAR Archive File”</p>
+<p>2D6C68352D,.lha, “LHA Compressed”</p>
+<p>20006040600, .wk1;.wks, “Lotus 123 v1 Worksheet”</p>
+<p>00001A0007800100, .fm3, “Lotus 123 v3 FMTfile”</p>
+<p>00001A0000100400, .wk3, “Lotus 123 v3Worksheet”</p>
+<p>20006800200, .fmt, “Lotus 123 v4 FMTfile”</p>
+<p>00001A0002100400, .wk4, “Lotus 123 v5”</p>
+<p>5B7665725D, .ami, “Lotus Ami Pro”</p>
+<p>300000041505052, .adx, “Lotus ApproachADX file”</p>
+<p>1A0000030000, .nsf;.ntf, “Lotus NotesDatabase/Template”</p>
+<p>4D47582069747064, .ds4, “MicrografixDesigner 4”</p>
+<p>4D534346, .cab, “Microsoft CAB FileFormat”</p>
+<p>4D546864, .mid, “Midi Audio File”</p>
+<p>000001B3, .mpg;.mpeg, “MPEG Movie”</p>
+<p>0902060000001000B9045C00, .xls, “MS Excel v2”</p>
+<p>0904060000001000F6055C00, .xls, “MS Excel v4”</p>
+<p>7FFE340A,.doc, “MS Word”</p>
+<p>1234567890FF, .doc, “MS Word 6.0”</p>
+<p>31BE000000AB0000, .doc, “MS Word forDOS 6.0”</p>
+<p>1A00000300001100, .nsf, “NotesDatabase”</p>
+<p>7E424B00, .psp, “PaintShop Pro Image File”</p>
+<p>504B0304, .zip, “PKZIP Compressed”</p>
+<p>89504E470D0A, .png, “PNG Image File”</p>
+<p>6D646174, .mov, “QuickTime Movie”</p>
+<p>6D646174, .qt, “Quicktime MovieFile”</p>
+<p>52617221, .rar, “RAR Archive File”</p>
+<p>2E7261FD, .ra;.ram, “Real AudioFile”</p>
+<p>EDABEEDB, .rpm, “RPM Archive File”</p>
+<p>2E736E64, .au, “SoundMachine AudioFile”</p>
+<p>53495421, .sit, “Stuffit v1 ArchiveFile”</p>
+<p>53747566664974, .sit, “Stuffit v5Archive File”</p>
+<p>1F9D, .z, “TAR Compressed ArchiveFile”</p>
+<p>49492A, .tif;.tiff, “TIFF (Intel)”</p>
+<p>4D4D2A,.tif;.tiff, “TIFF (Motorola)”</p>
+<p>554641, .ufa, “UFA Archive File”</p>
+<p>57415645666D74, .wav, “Wave Files”</p>
+<p>D7CDC69A,.wmf, “Windows Meta File”</p>
+<p>4C000000, .lnk, “Windows Shortcut (LinkFile)”</p>
+<p>504B3030504B0304, .zip, “WINZIPCompressed”</p>
+<p>FF575047, .wpg, “WordPerfectGraphics”</p>
+<p>FF575043, .wp, “WordPerfect v5 orv6”</p>
+<p>3C3F786D6C,.xml, “XML Document”</p>
+<p>FFFE3C0052004F004F0054005300540055004200, .xml, “XML Document(ROOTSTUB)”</p>
+<p>3C21454E54495459, .dtd, “XML DTD”</p>
+<p>5A4F4F20, .zoo, “ZOO Archive File”</p>
+<p>转载自：</p>
+<p><a class="link"   href="http://www.cnblogs.com/lwy-kitty/p/3928317.html" >原文链接<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   href="https://blog.csdn.net/zhembrace/article/details/52717559" >原文链接<i class="fas fa-external-link-alt"></i></a></p>
 ]]></content>
   </entry>
 </search>
