@@ -210,7 +210,15 @@
                 ></p>
 <p>解码步骤：<br>1.将待解码字符串中的字符对应查找base64编码表中的序列值（末尾的“=”直接忽略）<br>2.将所得对应序列值转换为6位二进制字符串<br>3.将所有6位二进制字符串从左往右按8位分割（多的是补的0所以直接丢掉并不会影响数据还原结果）<br>4.将每个8位二进制字符串转换位十进制<br>5.再将十进制转换位对应的ASCII字符串即可。   </p>
 <p>base64隐写原理<br>它之所以能够进行信息的隐藏，原因就在于解码时的第三步，会有部分多余数据被丢弃，而且这些数据是我们进行补充的0，那要是我们不全用0进行补充，而是用1或者0进行填充（二进制），这样就可以隐藏信息了。<br>提取信息的话，将我们填充进去的数据拿出来然后组成一串二进制字符串进行转码即可。由于一串base64编码最多只有4bit的隐写空间，所以实现隐写需要大量的编码串。</p>
-<p>下面是脚本</p>
+<p>下面是脚本<br>也顺便学习一下python。bin（）函数：返回指定整数的二进制数值，但结果总以0b开头！readlines（）函数：返回列表，包含所有的行。strip函数（）:删除开头与结尾指定的字符串或字符，如果什么的都没有则删除空格。zfill函数（）：zfill（width） width：指定字符串的长度，原字符串右对齐，前面补充零<a class="link"   href="https://www.runoob.com/python/att-string-zfill.html" >菜鸟教程zfill（）<i class="fas fa-external-link-alt"></i></a></p>
+<p>代码解题即可  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def base64change(s):</span><br><span class="line">    table = &#x27;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&#x27; # base64编码表，恰好索引值对应字母</span><br><span class="line">    for i in range(len(table)):</span><br><span class="line">        if table[i] == s:</span><br><span class="line">            return i</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 此方法用来获取隐藏信息二进制字符串</span><br><span class="line">def base64solve():</span><br><span class="line">    f = open(&#x27;C:\\Users\\admin\\Desktop\\stego.txt&#x27;,&#x27;r&#x27;)</span><br><span class="line">    lines = f.readlines()</span><br><span class="line"></span><br><span class="line">    flag_bin = &#x27;&#x27;</span><br><span class="line">    for line in lines:</span><br><span class="line">        # print(line)</span><br><span class="line">        l = line.strip() # 去掉两边的空格</span><br><span class="line">        if l[-1] == &#x27;=&#x27;:</span><br><span class="line">            if l[-2] == &#x27;=&#x27;: # 含有两个=则包含4bit信息</span><br><span class="line">            # 将返回的十进制转换为二进制数，由于返回的二进制数为0b开头，所以从第三位开始取，然后用0填充头部为4位，再取后四位隐藏的信息</span><br><span class="line">                flag_bin += bin(base64change(l[-3]))[2:].zfill(4)[-4:]</span><br><span class="line">            else:# 只含一个=则包含二bit信息</span><br><span class="line">                flag_bin += bin(base64change(l[-2]))[2:].zfill(2)[-2:]</span><br><span class="line">    #print(flag_bin)</span><br><span class="line">    flag = &#x27;&#x27;</span><br><span class="line">    for i in range(len(flag_bin)//8):</span><br><span class="line">        flag += chr(int(flag_bin[i * 8:(i + 1) * 8], 2))</span><br><span class="line">    print(flag)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    base64solve()   </span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
 ]]></content>
   </entry>
   <entry>
