@@ -171,12 +171,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>180 Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>744 Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>1 Mins</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>2 Mins</span>
         </span>
     
     
@@ -192,16 +192,33 @@
         
 
         <div class="article-content markdown-body">
-            <p>#签到<br>签到就不多说了。</p>
-<p>#二维码<br>工具：winhex，QR search（一款功能强大的<b>二维码识别软件</b>，主要集区域解码，全屏解码，摄像头拍照解码以及二维码美化等功能为一体），虚拟机</p>
+            <p>#签到<br>签到就不多说了。<br>#金三胖<br>打开，点击下载压缩包，一套操作行云流水。嗯。what fuck？<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-10-221653.o4v1te7tuvk.png"
+                      alt="lyh"
+                >属实是蚌埠住了。哪位hxd解决了给我留言哦~<br>#二维码<br>工具：winhex，QR search（一款功能强大的<b>二维码识别软件</b>，主要集区域解码，全屏解码，摄像头拍照解码以及二维码美化等功能为一体），虚拟机</p>
 <p>打开二维码图片，用手机扫了扫，不会真有人以为secret is here是flag吧？（手动狗头）hh。然后用winhex查看图片.看别人的博客有先用QR search扫描一下二维码的，就是可以查看二维码的信息）</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-08-175631.1lgxwkcfaluo.png"
                       alt="lyh"
-                >然后就在里面看到了隐藏文件，然后下面总结了几种解题方法，有一些是从别人的wp看的，感觉也很不错。</p>
-<p>binwalk分离。</p>
+                >然后就在里面看到了隐藏文件，然后下面总结了几种解题方法，有一些是从别人的wp看的，感觉也很不错。<br>Linux解题：<br>binwalk分离。这个工具是kali虚拟机自带的<br>使用方法：binwalk + 文件路径/文件名  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">binwalk + QR_code.png</span><br></pre></td></tr></table></figure>
+<p>执行命令后，binwalk就会自动分析这个文件。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yyhhhhhhhhh/image-folder@master/20211205/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2021-12-10-222910.3yl1jwv47q20.png"
+                      alt="lyh"
+                ><br>从分析的结果来看，这个png隐藏着一个txt。而且从471块偏移开始就是zip文件。<br>如何分离：<br>1.binwalk分离：<br>使用binwalk工具，使用dd命令分理处隐藏文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd if=QR_code.jpg of=4number.txt skip=471 bs=1</span><br></pre></td></tr></table></figure>
+<p>解释：if指定输入文件，of指定输出文件，skip指定从输入文件开头跳过471个块之后开始复制，bs设置每次读写块的大小为1字节。<br>执行后就会得到一个4number.txt。但是打开之后是乱码的。肯定有密码！  </p>
+<p>2.foremost工具分离：<br>foremost是一个基于文件文件头和尾部信息以及文件的内建数据结构恢复文件的命令行工具，win可以下载使用，Linux可以使用以下命令行使用  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get insatll foremost</span><br></pre></td></tr></table></figure>
+<p>Linux下分离文件的命令为  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foremost QR_code.png</span><br></pre></td></tr></table></figure>
+<p>执行命令后，foremost会生成output目录存放分离出的文件。<br>windouws是把文件直接拖到foremost.exe分离即可。<br>3.使用winhex分离<a class="link"   target="_blank" rel="noopener" href="https://www.dgxue.com/huifu/79.html#:~:text=WinHex%E7%9A%84%E5%81%8F%E7%A7%BB%E9%87%8F%E7%94%B1%E6%A8%AA%E5%9D%90%E6%A0%87%E5%92%8C%E7%BA%B5%E5%9D%90%E6%A0%87%E6%9E%84%E6%88%90%EF%BC%8C%E7%94%A8%E6%9D%A5%E5%85%B7%E4%BD%93%E5%AE%9A%E4%BD%8D%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E6%95%B0%E6%8D%AE%E7%BC%96%E8%BE%91%E5%8C%BA%E4%B8%AD%E6%AF%8F%E4%B8%AA%E5%AD%97%E8%8A%82%E7%9A%84%E5%9C%B0%E5%9D%80%E3%80%82%20%E5%81%8F%E7%A7%BB%E9%87%8F%E7%9A%84%E6%A8%AA%E5%9D%90%E6%A0%87%E5%92%8C%E7%BA%B5%E5%9D%90%E6%A0%87%E4%B8%AD%E7%9A%84%E6%95%B0%E5%80%BC%E9%BB%98%E8%AE%A4%E4%B8%BA%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%EF%BC%8C%E5%A6%82%E6%9E%9C%E9%9C%80%E8%A6%81%E6%94%B9%E6%88%90%E5%8D%81%E8%BF%9B%E5%88%B6%EF%BC%8C%E5%8F%AA%E9%9C%80%E5%9C%A8%E7%BA%B5%E5%9D%90%E6%A0%87%E5%A4%84%E7%9A%84%E4%BB%BB%E6%84%8F%E4%BD%8D%E7%BD%AE%E5%8D%95%E5%87%BB%E9%BC%A0%E6%A0%87%E5%B7%A6%E9%94%AE%E5%8D%B3%E5%8F%AF%E3%80%82,%E5%BD%93%E7%94%A8WinHex%E6%89%93%E5%BC%80%E4%B8%80%E4%B8%AA%E7%BC%96%E8%BE%91%E7%9B%AE%E6%A0%87%E6%97%B6%EF%BC%8C%E7%BC%96%E8%BE%91%E7%9B%AE%E6%A0%87%E4%B8%AD%E5%AD%98%E5%82%A8%E7%9A%84%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E9%83%BD%E4%BC%9A%E4%BB%A5%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E7%9A%84%E5%BD%A2%E5%BC%8F%E6%98%BE%E7%A4%BA%E5%9C%A8WinHex%E7%9A%84%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E6%95%B0%E6%8D%AE%E7%BC%96%E8%BE%91%E5%8C%BA%E3%80%82%20%E7%BC%96%E8%BE%91%E5%8C%BA%E7%9A%84%E5%8F%B3%E4%BE%A7%E6%9C%89%E6%BB%9A%E5%8A%A8%E6%9D%A1%EF%BC%8C%E5%8F%AF%E4%BB%A5%E4%B8%8A%E4%B8%8B%E6%8B%96%E5%8A%A8%EF%BC%8C%E8%BF%99%E6%A0%B7%E5%B0%B1%E5%8F%AF%E4%BB%A5%E6%96%B9%E4%BE%BF%E5%9C%B0%E6%9F%A5%E7%9C%8B%E5%92%8C%E7%BC%96%E8%BE%91%E8%BF%99%E4%BA%9B%E6%95%B0%E6%8D%AE%E4%BA%86%E3%80%82" >winhex使用教程<i class="fas fa-external-link-alt"></i></a><br>一个完整png文件由89 50开头，AE 42结尾，图片查看器会直接忽略AE 42之后的内容，因此可以在png中加入其他文件。<br>卧槽，在网上找了一大圈winhex如何查找十六进制，有的是说ctrl+alt+F，。。在界面找了一大会，发现是Ctrl+alt+X，操。直接十六进制搜索AE42即可。其实这块有两个4number.txt(我也不知道怎么回事，先放放。)<br>在60的6右键选中alt+1，末尾选择alt+2.右键edit➡copy all➡into new file。<br>4.改后缀名（挺好用的hh）<br>分析知道隐藏文件是zip之后，一个简单粗暴的方法是直接把图片的后缀改为.zip，然后解压即可（这种方法虽然简单快速，但如果隐写了多个文件时可能会失败）</p>
 
         </div>
 
